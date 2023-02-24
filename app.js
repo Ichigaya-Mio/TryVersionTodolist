@@ -23,9 +23,8 @@ app.use(express.static("public"));
 //与云端服务器连接 connect to mongodb server
 const connectDB = async () => {
   try{
-    mongoose.connect('mongodb+srv://' + process.env.ADMIN_NAME + ':' + process.env.ADMIN_PASS + '@cluster0.amrnehf.mongodb.net/todolistDB', {
-      useNewUrlParser: true});
-    console.log('MongoDB Connected');
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB Connected: ${conn.connection.host}');
   } catch(err) {
     console.log(err);
     process.exit(1);
