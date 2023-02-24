@@ -1,22 +1,27 @@
 //jshint esversion:6
 
-require('dotenv').config();
+
 
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const lodash = require("lodash");
 const app = express();
+require("dotenv").config();
 
+mongoose.set('strictQuery', false);
 
 const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
+
+
+mongoose.set('strictQuery', true);
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.set('strictQuery', false);
 
 //与云端服务器连接 connect to mongodb server
 const connectDB = async () => {
@@ -171,9 +176,9 @@ app.get("/about", function(req, res){
 
 
 connectDB().then(() => {
-  app.listen(PORT, function() {
+  app.listen(PORT, () => {
     console.log("Server started on port ${PORT}");
-  });
+  });  
   
 });
 
