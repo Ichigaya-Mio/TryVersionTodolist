@@ -51,7 +51,7 @@ const Item = mongoose.model("Item", itemSchema);
 
 
 const item1 = new Item ({
-  name: "Gun"
+  name: "Lycoreco"
 });
 
 const item2 = new Item ({
